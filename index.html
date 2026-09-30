@@ -25,8 +25,6 @@ body {
     min-height: 100vh;
 }
 
-/* HEADER */
-
 header {
     padding: 25px 18px 20px;
     text-align: center;
@@ -64,8 +62,6 @@ header p {
     font-size: 14px;
 }
 
-/* SEARCH */
-
 .search-container {
     max-width: 700px;
     margin: 22px auto 10px;
@@ -93,8 +89,6 @@ header p {
     box-shadow: 0 0 20px rgba(80,110,255,.12);
 }
 
-/* MAIN */
-
 main {
     width: 100%;
     max-width: 900px;
@@ -107,15 +101,11 @@ main {
     margin: 10px 0 18px;
 }
 
-/* APP GRID */
-
 .apps {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
 }
-
-/* APP CARD */
 
 .app-card {
     background: rgba(255,255,255,.055);
@@ -202,16 +192,12 @@ main {
     filter: brightness(1.12);
 }
 
-/* EMPTY */
-
 .no-results {
     display: none;
     text-align: center;
     color: #8e97aa;
     padding: 50px 10px;
 }
-
-/* FOOTER */
 
 footer {
     text-align: center;
@@ -224,8 +210,6 @@ footer {
 footer strong {
     color: #9ca7c0;
 }
-
-/* MOBILE */
 
 @media (max-width: 600px) {
 
@@ -261,7 +245,6 @@ footer strong {
 
 </header>
 
-
 <div class="search-container">
 
     <input
@@ -273,7 +256,6 @@ footer strong {
     >
 
 </div>
-
 
 <main>
 
@@ -287,76 +269,55 @@ footer strong {
 
 </main>
 
-
 <footer>
 
-    <div>© <span id="year"></span> <strong>SG Creations</strong></div>
-    <div style="margin-top:6px;">Android apps made with passion.</div>
+    <div>
+        © <span id="year"></span> <strong>SG Creations</strong>
+    </div>
+
+    <div style="margin-top:6px;">
+        Android apps made with passion.
+    </div>
 
 </footer>
 
-
 <script>
 
-/*
-====================================================
-APP LIST
-====================================================
-
-To add your APK:
-
-1. Upload the APK to your GitHub repository.
-2. Put its filename in "apk".
-3. Put the icon filename in "icon".
-4. Change the name, version, size and description.
-
-Example:
-
-{
-    name: "My App",
-    version: "1.0",
-    size: "25 MB",
-    description: "My awesome Android application.",
-    icon: "myapp.png",
-    apk: "myapp.apk"
-}
-
-====================================================
-*/
+/* YOUR APPS */
 
 const apps = [
-
-    {
-        name: "SG Calculator",
-        version: "1.0",
-        size: "10 MB",
-        description: "A simple and fast calculator for Android.",
-        icon: "calculator.png",
-        apk: "SG-Calculator.apk"
-    },
-
-    {
-        name: "SG Gallery",
-        version: "1.0",
-        size: "15 MB",
-        description: "A simple gallery application for viewing your photos.",
-        icon: "gallery.png",
-        apk: "SG-Gallery.apk"
-    },
 
     {
         name: "SARVESH AI",
         version: "1.0",
         size: "20 MB",
         description: "Your personal AI assistant powered by SARVESH AI.",
-        icon: "sarvesh-ai.png",
-        apk: "SARVESH-AI.apk"
+        icon: "",
+        apk: "SARVESH AI.apk"
+    },
+
+    {
+        name: "SG CALCI",
+        version: "1.0",
+        size: "10 MB",
+        description: "A simple and fast calculator for Android.",
+        icon: "",
+        apk: "SG CALCI.apk"
+    },
+
+    {
+        name: "SG Photo Gallery",
+        version: "1.0",
+        size: "15 MB",
+        description: "A simple gallery application for viewing your photos.",
+        icon: "",
+        apk: "SG Photo Gallery.apk"
     }
 
 ];
 
 
-/* CREATE APP CARDS */
+/* DISPLAY APPS */
 
 const appsContainer = document.getElementById("apps");
 const noResults = document.getElementById("noResults");
@@ -384,12 +345,26 @@ function displayApps(list) {
 
             <div class="app-top">
 
-                <img
-                    class="app-icon"
-                    src="${app.icon}"
-                    alt="${app.name}"
-                    onerror="this.style.display='none'"
-                >
+                ${
+                    app.icon
+                    ? `<img
+                        class="app-icon"
+                        src="${app.icon}"
+                        alt="${app.name}"
+                    >`
+                    : `
+                    <div class="app-icon"
+                         style="
+                         display:flex;
+                         align-items:center;
+                         justify-content:center;
+                         font-size:20px;
+                         font-weight:bold;
+                         ">
+                        SG
+                    </div>
+                    `
+                }
 
                 <div class="app-info">
 
@@ -419,7 +394,7 @@ function displayApps(list) {
 
             <a
                 class="download-btn"
-                href="${app.apk}"
+                href="${encodeURI(app.apk)}"
                 download
             >
                 Download APK
@@ -436,14 +411,25 @@ function displayApps(list) {
 
 /* SEARCH */
 
-document.getElementById("search").addEventListener("input", function () {
+document
+.getElementById("search")
+.addEventListener("input", function () {
 
-    const query = this.value.toLowerCase().trim();
+    const query = this.value
+        .toLowerCase()
+        .trim();
 
     const filtered = apps.filter(app =>
 
-        app.name.toLowerCase().includes(query) ||
-        app.description.toLowerCase().includes(query)
+        app.name
+        .toLowerCase()
+        .includes(query)
+
+        ||
+
+        app.description
+        .toLowerCase()
+        .includes(query)
 
     );
 
@@ -452,13 +438,13 @@ document.getElementById("search").addEventListener("input", function () {
 });
 
 
-/* CURRENT YEAR */
+/* YEAR */
 
 document.getElementById("year").textContent =
     new Date().getFullYear();
 
 
-/* INITIAL DISPLAY */
+/* START */
 
 displayApps(apps);
 
