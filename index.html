@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080b14">
+
+<title>SG Creations — Android Apps</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at 20% 10%, rgba(80,100,255,.18), transparent 30%),
+        radial-gradient(circle at 80% 30%, rgba(0,220,255,.10), transparent 30%),
+        #080b14;
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+/* HEADER */
+
+header {
+    padding: 25px 18px 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    background: rgba(8,11,20,.8);
+    backdrop-filter: blur(15px);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    width: 65px;
+    height: 65px;
+    margin: auto;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #5865ff, #00d9ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 23px;
+    font-weight: 800;
+    box-shadow: 0 0 30px rgba(70,130,255,.3);
+}
+
+header h1 {
+    margin-top: 12px;
+    font-size: 25px;
+    letter-spacing: 1px;
+}
+
+header p {
+    margin-top: 6px;
+    color: #9da6bd;
+    font-size: 14px;
+}
+
+/* SEARCH */
+
+.search-container {
+    max-width: 700px;
+    margin: 22px auto 10px;
+    padding: 0 18px;
+}
+
+.search {
+    width: 100%;
+    height: 52px;
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,.1);
+    outline: none;
+    background: rgba(255,255,255,.06);
+    color: white;
+    padding: 0 18px;
+    font-size: 15px;
+}
+
+.search::placeholder {
+    color: #7e879e;
+}
+
+.search:focus {
+    border-color: #5f78ff;
+    box-shadow: 0 0 20px rgba(80,110,255,.12);
+}
+
+/* MAIN */
+
+main {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    padding: 20px 18px 60px;
+}
+
+.section-title {
+    font-size: 18px;
+    margin: 10px 0 18px;
+}
+
+/* APP GRID */
+
+.apps {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+/* APP CARD */
+
+.app-card {
+    background: rgba(255,255,255,.055);
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 20px;
+    padding: 18px;
+    transition: .25s ease;
+    backdrop-filter: blur(12px);
+}
+
+.app-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(100,130,255,.4);
+}
+
+.app-top {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.app-icon {
+    width: 62px;
+    height: 62px;
+    border-radius: 16px;
+    object-fit: cover;
+    background: #151a28;
+    border: 1px solid rgba(255,255,255,.1);
+}
+
+.app-info {
+    min-width: 0;
+}
+
+.app-name {
+    font-size: 17px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.app-version {
+    margin-top: 5px;
+    color: #8f99b2;
+    font-size: 12px;
+}
+
+.app-description {
+    color: #aeb6c9;
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 15px 0;
+    min-height: 40px;
+}
+
+.app-meta {
+    display: flex;
+    justify-content: space-between;
+    color: #7e879d;
+    font-size: 11px;
+    margin-bottom: 13px;
+}
+
+.download-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    background: linear-gradient(135deg, #5865ff, #00aeea);
+    color: white;
+    padding: 12px 10px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 14px;
+    transition: .2s;
+}
+
+.download-btn:active {
+    transform: scale(.97);
+}
+
+.download-btn:hover {
+    filter: brightness(1.12);
+}
+
+/* EMPTY */
+
+.no-results {
+    display: none;
+    text-align: center;
+    color: #8e97aa;
+    padding: 50px 10px;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    padding: 25px 18px 35px;
+    color: #687187;
+    font-size: 12px;
+    border-top: 1px solid rgba(255,255,255,.06);
+}
+
+footer strong {
+    color: #9ca7c0;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    header {
+        padding-top: 20px;
+    }
+
+    .apps {
+        grid-template-columns: 1fr;
+    }
+
+    main {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .app-card {
+        padding: 17px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">SG</div>
+
+    <h1>SG Creations</h1>
+
+    <p>Android Apps & Games</p>
+
+</header>
+
+
+<div class="search-container">
+
+    <input
+        id="search"
+        class="search"
+        type="search"
+        placeholder="Search apps..."
+        autocomplete="off"
+    >
+
+</div>
+
+
+<main>
+
+    <h2 class="section-title">Available Apps</h2>
+
+    <div id="apps" class="apps"></div>
+
+    <div id="noResults" class="no-results">
+        No apps found.
+    </div>
+
+</main>
+
+
+<footer>
+
+    <div>© <span id="year"></span> <strong>SG Creations</strong></div>
+    <div style="margin-top:6px;">Android apps made with passion.</div>
+
+</footer>
+
+
+<script>
+
+/*
+====================================================
+APP LIST
+====================================================
+
+To add your APK:
+
+1. Upload the APK to your GitHub repository.
+2. Put its filename in "apk".
+3. Put the icon filename in "icon".
+4. Change the name, version, size and description.
+
+Example:
+
+{
+    name: "My App",
+    version: "1.0",
+    size: "25 MB",
+    description: "My awesome Android application.",
+    icon: "myapp.png",
+    apk: "myapp.apk"
+}
+
+====================================================
+*/
+
+const apps = [
+
+    {
+        name: "SG Calculator",
+        version: "1.0",
+        size: "10 MB",
+        description: "A simple and fast calculator for Android.",
+        icon: "calculator.png",
+        apk: "SG-Calculator.apk"
+    },
+
+    {
+        name: "SG Gallery",
+        version: "1.0",
+        size: "15 MB",
+        description: "A simple gallery application for viewing your photos.",
+        icon: "gallery.png",
+        apk: "SG-Gallery.apk"
+    },
+
+    {
+        name: "SARVESH AI",
+        version: "1.0",
+        size: "20 MB",
+        description: "Your personal AI assistant powered by SARVESH AI.",
+        icon: "sarvesh-ai.png",
+        apk: "SARVESH-AI.apk"
+    }
+
+];
+
+
+/* CREATE APP CARDS */
+
+const appsContainer = document.getElementById("apps");
+const noResults = document.getElementById("noResults");
+
+function displayApps(list) {
+
+    appsContainer.innerHTML = "";
+
+    if (list.length === 0) {
+
+        noResults.style.display = "block";
+
+        return;
+    }
+
+    noResults.style.display = "none";
+
+    list.forEach(app => {
+
+        const card = document.createElement("div");
+
+        card.className = "app-card";
+
+        card.innerHTML = `
+
+            <div class="app-top">
+
+                <img
+                    class="app-icon"
+                    src="${app.icon}"
+                    alt="${app.name}"
+                    onerror="this.style.display='none'"
+                >
+
+                <div class="app-info">
+
+                    <div class="app-name">
+                        ${app.name}
+                    </div>
+
+                    <div class="app-version">
+                        Version ${app.version}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="app-description">
+                ${app.description}
+            </div>
+
+            <div class="app-meta">
+
+                <span>APK</span>
+
+                <span>${app.size}</span>
+
+            </div>
+
+            <a
+                class="download-btn"
+                href="${app.apk}"
+                download
+            >
+                Download APK
+            </a>
+
+        `;
+
+        appsContainer.appendChild(card);
+
+    });
+
+}
+
+
+/* SEARCH */
+
+document.getElementById("search").addEventListener("input", function () {
+
+    const query = this.value.toLowerCase().trim();
+
+    const filtered = apps.filter(app =>
+
+        app.name.toLowerCase().includes(query) ||
+        app.description.toLowerCase().includes(query)
+
+    );
+
+    displayApps(filtered);
+
+});
+
+
+/* CURRENT YEAR */
+
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+
+/* INITIAL DISPLAY */
+
+displayApps(apps);
+
+</script>
+
+</body>
+</html>
